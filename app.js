@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 var mysql = require('mysql')
 var bodyParser = require('body-parser')
-///var axios = require('axios')
+var axios = require('axios')
 var pach = require('path')
 var to = require('./authentication/token')
 var mes = require('./ms_module')
@@ -25,36 +25,50 @@ var con = mysql.createConnection({
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 /**
  * urlencodedParser <- with this we can find req parameter from clint(with clint ?! I mean all users like customers and end-users)
- * f1 an 3 as string
+ * f1 an 3 as string with filter
  */
 app.post('/ReadProfile', urlencodedParser, function (req, res) {
   var F1 = req.body.name
-  function ReadProfile(F1) {
+  var F2 = req.body.F2
+  var F3 = req.body.F3
+  function ReadProfile(F1,F2,F3) {
     con.connect(function(err) {
-      if (err) throw err;
       //Select all customers and return the result object:
-      con.query("SELECT * FROM `"+F1+"` ", function (err, result, fields) {
-        if (err) throw err;
-        var an =  JSON.stringify(result);
+      con.query("SELECT * FROM `"+F1+"` WHERE "+F2+" = "+F3+" ", function (err, result, fields) {
+      /// if (err) throw err;
+        var an =  result
         res.set('content-type', 'application/json');
         res.send(an);
       });
     });
   }
-  ReadProfile(F1);
+  ReadProfile(F1,F2,F3);
+})
+app.post('/ReadProfileall', urlencodedParser, function (req, res) {
+  var F1 = req.body.name
+  function ReadProfileall(F1) {
+    con.connect(function(err) {
+      //Select all customers and return the result object:
+      con.query("SELECT * FROM `"+F1+"`  ", function (err, result, fields) {
+      /// if (err) throw err;
+        var an =  result
+        res.set('content-type', 'application/json');
+        res.send(an);
+      });
+    });
+  }
+  ReadProfileall(F1);
 })
 ///// divose list get for web
 
 app.get('/Dlist', function (req, res) {
   function Dlist() {
     con.connect(function(err) {
-      if (err) throw err;
+      ////if (err) throw err;
       //Select all customers and return the result object:
       con.query("SELECT * FROM devicelist ", function (err, result, fields) {
         if (err) throw err;
-        var an =  JSON.stringify(result);
-        var as = JSON.parse(an);
-        res.render('ds',{val : as})
+        res.send(result)
       });
     });
     
@@ -143,16 +157,16 @@ app.post('/Adddevicecolumn', urlencodedParser,function (req, res) {
   var Name = req.body.Dname
   function Adddevicec(a1) {
     con.connect(function(err) {
-      if (err) throw err;
+     /// if (err) throw err;
       //Select all customers and return the result object:
-      var sql = "CREATE TABLE "+a1+" (id INT(255), SerialNumber VARCHAR(255))";
+      var sql = "CREATE TABLE "+a1+" (id INT(255) AUTO_INCREMENT PRIMARY KEY, SerialNumber VARCHAR(255),date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)";
       con.query(sql,  function (err, result) {
-        if (err) throw err;
+       /// if (err) throw err;
         res.send(mes.AddRecords("Device"));
       });
       var sql2 = "INSERT INTO `devicelist` (name,active,inactive) VALUES ('"+a1+"', 'true', 'true')";
       con.query(sql2, function (err, result) {
-        if (err) throw err;
+       /// if (err) throw err;
         res.send(mes.AddRecords("Device"));
         
       });
@@ -170,16 +184,16 @@ app.post('/Adddevicecolumn', urlencodedParser,function (req, res) {
   var data = req.body.PraprtyName
   function Adddevicec() {
     con.connect(function(err) {
-      if (err) throw err;
+     // if (err) throw err;
       //Select all customers and return the result object:
-      var sql = "CREATE TABLE "+data+" (id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, UserId INT(255), Value VARCHAR(255))";
+      var sql = "CREATE TABLE "+data+" (id INT(255) UNSIGNED AUTO_INCREMENT PRIMARY KEY, UserId INT(255), Value VARCHAR(255),date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)";
       con.query(sql,  function (err, result) {
-        if (err) throw err;
+       // if (err) throw err;
         res.send(mes.AddRecords("Praprty"));
       });
       var sql2 = "INSERT INTO `property` (PropertyName) VALUES ('"+data+"')";
       con.query(sql2, function (err, result) {
-        if (err) throw err;
+      //  if (err) throw err;
        /// res.send(mes.AddRecords("Praprty"));
         
       });
@@ -198,11 +212,11 @@ app.post('/Adddevicecolumn', urlencodedParser,function (req, res) {
   var data = {UserId:userid,Value:Value}
   function Addvaleupraprty() {
     con.connect(function(err) {
-      if (err) throw err;
+     // if (err) throw err;
       //Select all customers and return the result object:
       var sql = "INSERT INTO `"+table+"` SET ?";
       con.query(sql,data, function (err, result) {
-        if (err) throw err;
+       /// if (err) throw err;
         res.send(mes.AddRecords("new valeu "));
       });
     });
