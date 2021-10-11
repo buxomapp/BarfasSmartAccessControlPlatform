@@ -28,7 +28,7 @@ function err_text(test){
 /**
  * 
  * @param {*} data 
- * @returns a nymber for contorol string like passwords and etc..
+ * @returns a nymber for contorol string, like passwords and etc..
  */
 function NumberOfString(data){
     return data.length 
