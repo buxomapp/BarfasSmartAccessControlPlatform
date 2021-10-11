@@ -35,12 +35,13 @@ app.post('/ReadProfile', urlencodedParser, function (req, res) {
     con.connect(function(err) {
       //Select all customers and return the result object:
       con.query("SELECT * FROM `"+F1+"` WHERE "+F2+" = "+F3+" ", function (err, result, fields) {
-      /// if (err) throw err;
+     ///  if (err) throw err
         var an =  result
         res.set('content-type', 'application/json');
         res.send(an);
       });
     });
+    
   }
   ReadProfile(F1,F2,F3);
 })
@@ -94,7 +95,7 @@ app.post('/login',urlencodedParser, function (req, res) {
  var mail = req.body.name
  function checkuser(mail) {
   con.connect(function(err) {
-    if (err) throw err;
+    //if (err) throw err;
     //Select all customers and return the result object:
     con.query("SELECT * FROM `Customers` WHERE Email = '"+mail+"' ", function (err, result, fields) {
       if (err) throw err;
