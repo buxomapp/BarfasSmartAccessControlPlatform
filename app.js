@@ -1,5 +1,6 @@
 /**
- * apis and moduls
+ * @description buxom app company :
+ * Server 
  */
 const express = require('express')
 const app = express()
@@ -10,6 +11,7 @@ var pach = require('path')
 var to = require('./authentication/token')
 var mes = require('./ms_module')
 var apis = require('./import_api/GetProfileapi')
+var dbm = require('./db_module')
 app.set("view engine", "ejs")
 var cookieParser = require('cookie-parser')
 const port = 3000
@@ -31,19 +33,12 @@ app.post('/ReadProfile', urlencodedParser, function (req, res) {
   var F1 = req.body.name
   var F2 = req.body.F2
   var F3 = req.body.F3
-  function ReadProfile(F1,F2,F3) {
-    con.connect(function(err) {
-      //Select all customers and return the result object:
-      con.query("SELECT * FROM `"+F1+"` WHERE "+F2+" = "+F3+" ", function (err, result, fields) {
-     ///  if (err) throw err
-        var an =  result
-        res.set('content-type', 'application/json');
-        res.send(an);
-      });
-    });
-    
+  var Read_Profile =dbm.ReadProfile(F1,F2,F3)
+  if (!Read_Profile){
+    var items = dbm.items
+    res.set('content-type', 'application/json');
+    res.send(items);
   }
-  ReadProfile(F1,F2,F3);
 })
 app.post('/ReadProfileall', urlencodedParser, function (req, res) {
   var F1 = req.body.name
@@ -76,9 +71,6 @@ app.get('/Dlist', function (req, res) {
   }
   Dlist();
 })
-
-
-
 
 app.get('/rep', function (req, res) {
   
@@ -156,25 +148,11 @@ app.post('/Adddevicecolumn', urlencodedParser,function (req, res) {
  //// crate devois  table
  app.post('/Adddevice', urlencodedParser,function (req, res) {
   var Name = req.body.Dname
-  function Adddevicec(a1) {
-    con.connect(function(err) {
-     /// if (err) throw err;
-      //Select all customers and return the result object:
-      var sql = "CREATE TABLE "+a1+" (id INT(255) AUTO_INCREMENT PRIMARY KEY, SerialNumber VARCHAR(255),date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)";
-      con.query(sql,  function (err, result) {
-       /// if (err) throw err;
-        res.send(mes.AddRecords("Device"));
-      });
-      var sql2 = "INSERT INTO `devicelist` (name,active,inactive) VALUES ('"+a1+"', 'true', 'true')";
-      con.query(sql2, function (err, result) {
-       /// if (err) throw err;
-        res.send(mes.AddRecords("Device"));
-        
-      });
-
-    });
+  var list = req.body.Dname
+  var Add_devise = dbm.Adddevicec(Name,list);
+  if (!Add_devise){
+    res.send(mes.AddRecords("Device"));
   }
-  Adddevicec(Name);
 })
 /**
  * the most impourtant to this case is :
@@ -211,14 +189,21 @@ app.post('/Adddevicecolumn', urlencodedParser,function (req, res) {
   var Value = req.body.Value
   var userid = req.body.UserId
   var data = {UserId:userid,Value:Value}
+  var data2 = {PropertyName:table,userid:userid}
   function Addvaleupraprty() {
     con.connect(function(err) {
      // if (err) throw err;
       //Select all customers and return the result object:
       var sql = "INSERT INTO `"+table+"` SET ?";
       con.query(sql,data, function (err, result) {
-       /// if (err) throw err;
+        if (err) throw err;
         res.send(mes.AddRecords("new valeu "));
+      });
+      var addlist = "INSERT INTO `propertyusers`SET ?";
+      con.query(addlist,data2, function (err, result) {
+       /// if (err) throw err;
+       /// res.send(mes.AddRecords("Device"));
+        
       });
     });
   }
@@ -243,8 +228,6 @@ app.post('/apps', urlencodedParser,function (req, res) {
 
 ////// updata for app show
 app.post('/test', urlencodedParser,function (req, res) {
-  var test = req.body.test
-  res.send(test)
 
 })
 app.listen(port, () => {
