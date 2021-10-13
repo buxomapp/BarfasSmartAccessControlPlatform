@@ -68,9 +68,25 @@ var con = mysql.createConnection({
 
     });
   }
+
+  function showlistf() {
+    con.connect(function(err) {
+      ////if (err) throw err;
+      //Select all customers and return the result object:
+      con.query("SELECT * FROM devicelist ", function (err, result, fields) {
+        if (err) throw err;
+        var showlist = result
+        exports.showlist=showlist
+      });
+    });
+    
+  }
+  
+  
   exports.db_chack=db_chack
   exports.ReadProfile=ReadProfile
   exports.Adddevicec=Adddevicec
+  exports.showlistf=showlistf
  
 
  
