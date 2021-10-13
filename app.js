@@ -10,12 +10,17 @@ var axios = require('axios')
 var pach = require('path')
 var to = require('./authentication/token')
 var mes = require('./ms_module')
-var apis = require('./import_api/GetProfileapi')
+var logins = require('./import_api/logins')
+var dlists = require('./import_api/dlist')
 var dbm = require('./db_module')
 app.set("view engine", "ejs")
 var cookieParser = require('cookie-parser')
 const port = 3000
 app.use(cookieParser())
+app.use(express.static('public'))
+app.use('/css',express.static(__dirname + 'public/css'))
+app.use('/images',express.static(__dirname + 'public/images'))
+app.use('/js',express.static(__dirname + 'public/js'))
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -75,7 +80,7 @@ app.get('/Dlist', function (req, res) {
 app.get('/rep', function (req, res) {
   
 
-  res.send(apis.Profileitems)
+ //// res.send(apis.Profileitems)
 
 })
 
@@ -134,7 +139,7 @@ app.post('/Adddevicecolumn', urlencodedParser,function (req, res) {
 
   function Adddevicecolumn(a1,a2) {
     con.connect(function(err) {
-      if (err) throw err;
+     /// if (err) throw err;
       //Select all customers and return the result object:
       var sql = "ALTER table "+a2+" add column ("+a1+" varchar(255))";
       con.query(sql, function (err, result) {
@@ -226,6 +231,30 @@ app.post('/apps', urlencodedParser,function (req, res) {
   put(st);
 })
 
+app.get('/dashboard', urlencodedParser,function (req, res) {
+
+  var data1 = logins.logins
+  var data2 = dlists.dlists
+  var as = JSON.parse(data1);
+  var as1 = JSON.parse(data2);
+
+  res.render('index',{data:as,data2:as1,v:"login"})
+
+})
+app.get('/dashboard2', urlencodedParser,function (req, res) {
+
+
+  if(!dbm.showlistf()){
+    var data = dbm.showlist
+    var data2 = JSON.stringify(data)
+    var data3 = JSON.parse(data2)
+    res.render('in',{data:data3,v:"login"})
+  }
+
+
+  
+
+})
 ////// updata for app show
 app.post('/test', urlencodedParser,function (req, res) {
 
