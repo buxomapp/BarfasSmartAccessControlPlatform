@@ -21,6 +21,7 @@ app.use(express.static('public'))
 app.use('/css',express.static(__dirname + 'public/css'))
 app.use('/images',express.static(__dirname + 'public/images'))
 app.use('/js',express.static(__dirname + 'public/js'))
+app.use('/vendors',express.static(__dirname + 'public/vendors'))
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -238,17 +239,23 @@ app.get('/dashboard', urlencodedParser,function (req, res) {
   var as = JSON.parse(data1);
   var as1 = JSON.parse(data2);
 
-  res.render('index',{data:as,data2:as1,v:"login"})
+  res.render('index',{data:as,data2:as1,v:"Active",vv:"Login"})
 
 })
-app.get('/dashboard2', urlencodedParser,function (req, res) {
-
-
-  if(!dbm.showlistf()){
+app.post('/dashboard2', urlencodedParser,function (req, res) {
+  var F1 = req.body.name
+  var F2 = req.body.F2
+  var F3 = req.body.F3
+  var Read_Profile =dbm.ReadProfile(F1,F2,F3)
+  if(!dbm.showlistf() && !Read_Profile){
     var data = dbm.showlist
     var data2 = JSON.stringify(data)
     var data3 = JSON.parse(data2)
-    res.render('in',{data:data3,v:"login"})
+    var items =JSON.stringify(dbm.items)
+    var it = JSON.parse(items)
+
+    
+    res.render('in',{data:data3,v:"Active",data2:it})
   }
 
 

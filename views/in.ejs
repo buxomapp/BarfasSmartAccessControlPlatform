@@ -252,6 +252,11 @@
                   <p class="card-title text-md-center text-xl-left">Logins System</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                   </div>
+                  <% for(var i=0; i < data2.length; i++) { %>
+                    <tr>
+                      <td><p class="mb-0 mt-2 text-danger">Name : <%= data2[i].name %> Status :<% if (data2[i].active === "true") { %> <%= vv %> <% } %>  <span class="text-black ml-1"></span></p></td>
+                    </tr>
+                   <% } %>
 
 
                 </div>

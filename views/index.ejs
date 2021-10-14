@@ -169,62 +169,55 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="ti-palette menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
+              <span class="menu-title">Add Divose</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Add Divose cul</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add property</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/forms/basic_elements.html">
               <i class="ti-layout-list-post menu-icon"></i>
-              <span class="menu-title">Form elements</span>
+              <span class="menu-title">Add Divose cul</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
               <i class="ti-pie-chart menu-icon"></i>
-              <span class="menu-title">Charts</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/icons/themify.html">
-              <i class="ti-star menu-icon"></i>
-              <span class="menu-title">Icons</span>
+              <span class="menu-title">Add property</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
               <i class="ti-user menu-icon"></i>
-              <span class="menu-title">User Pages</span>
+              <span class="menu-title">Profile pages</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Profile </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Add Users </a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> My divose </a></li>
+
               </ul>
             </div>
           </li>
+
+
+
+
           <li class="nav-item">
-            <a class="nav-link" href="documentation/documentation.html">
-              <i class="ti-write menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+            <a class="nav-link" href="pages/tables/basic-table.html">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">settings</span>
             </a>
           </li>
+
+
         </ul>
       </nav>
       <!-- partial -->
@@ -248,13 +241,31 @@
             <!--  a wighte -->
             <div class="col-md-3 grid-margin stretch-card">
               <div class="card">
+                <div>
+                  <div class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#aa" aria-expanded="false" aria-controls="aa">
+                      <p class=" menu-icon"></p>
+                      <span class="menu-title">Add weight</span>
+                      <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="aa">
+                      <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html">Enter /Exit</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Divose list</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> and etc...</a></li>
+        
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="card-body">
                   <p class="card-title text-md-center text-xl-left">Logins System</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                   </div>
                   <% for(var i=0; i < data.length; i++) { %>
                   <tr>
-                    <td><p class="mb-0 mt-2 text-danger"><%= data[i].UserId %> <%= data[i].Value %><span class="text-black ml-1"></span></p></td>
+                    <td><p class="mb-0 mt-2 text-danger">Name : <%= data[i].UserId %> Status :<% if (data[i].Value === "true") { %> <%= vv %> <% } %><span class="text-black ml-1"></span></p></td>
                   </tr>
                  <% } %>
 
@@ -264,6 +275,23 @@
             <!--  a wighte -->
             <div class="col-md-3 grid-margin stretch-card">
               <div class="card">
+                <div>
+                  <div class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#aaa" aria-expanded="false" aria-controls="aaa">
+                      <p class=" menu-icon"></p>
+                      <span class="menu-title">Add weight</span>
+                      <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="aaa">
+                      <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html">Enter /Exit</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Divose list</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> and etc...</a></li>
+        
+                      </ul>
+                    </div>
+                  </div>
+                </div>
                 <div class="card-body">
                   <p class="card-title text-md-center text-xl-left">Divose list</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
@@ -280,24 +308,24 @@
             <div class="col-md-3 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title text-md-center text-xl-left">Downloads</p>
+                  <p class="card-title text-md-center text-xl-left">Demo</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">40016</h3>
-                    <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Demo</h3>
+                   
                   </div>  
-                  <p class="mb-0 mt-2 text-success">64.00%<span class="text-black ml-1"><small>(30 days)</small></span></p>
+                 
                 </div>
               </div>
             </div>
             <div class="col-md-3 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title text-md-center text-xl-left">Returns</p>
+                  <p class="card-title text-md-center text-xl-left">Demo</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">61344</h3>
-                    <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
+                    <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">Demo</h3>
+                    
                   </div>  
-                  <p class="mb-0 mt-2 text-success">23.00%<span class="text-black ml-1"><small>(30 days)</small></span></p>
+                  
                 </div>
               </div>
             </div>
