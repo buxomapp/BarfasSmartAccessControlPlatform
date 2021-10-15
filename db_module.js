@@ -2,6 +2,7 @@
  * @description buxom app company :
  * database module
  */
+const { query } = require('express');
 var mysql = require('mysql')
 var con = mysql.createConnection({
     host: "localhost",
@@ -53,6 +54,19 @@ var con = mysql.createConnection({
     
   }
 
+  function ReadProfilefull() {
+    con.connect(function(err) {
+      //Select all customers and return the result object:
+      con.query("SELECT * FROM Users ", function (err, result, fields) {
+     ///  if (err) throw err
+        var pr =  result
+        exports.pr=pr
+
+      });
+    });
+    
+  }
+
   function Adddevicec(a1,a2) {
     con.connect(function(err) {
      /// if (err) throw err;
@@ -82,11 +96,31 @@ var con = mysql.createConnection({
     
   }
   
+
+  function show() {
+    con.connect(function(err) {
+      ////if (err) throw err;
+      //Select all customers and return the result object:
+      con.query("SELECT * FROM devicelist ", function (err, result, fields) {
+        if (err) throw err;
+        exports.result=result
+
+        
+
+        
+      });
+    });
+    
+  }
   
   exports.db_chack=db_chack
   exports.ReadProfile=ReadProfile
   exports.Adddevicec=Adddevicec
   exports.showlistf=showlistf
+  exports.show=show
+  exports.ReadProfilefull= ReadProfilefull
+ 
+  
  
 
  

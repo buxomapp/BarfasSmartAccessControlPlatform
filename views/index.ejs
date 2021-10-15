@@ -228,6 +228,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div>
                   <h4 class="font-weight-bold mb-0">BARFAS Dashboard</h4>
+                  
                 </div>
                 <div>
                     <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
@@ -263,9 +264,20 @@
                   <p class="card-title text-md-center text-xl-left">Logins System</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                   </div>
+                  <% function bbb(data){
+                    var ook = "Login"
+                    var nno = "Exit"
+                    if (data === "true"){
+                      return ook
+                    }else{
+                      return nno
+                    }
+                  }
+                  %>
+                  
                   <% for(var i=0; i < data.length; i++) { %>
                   <tr>
-                    <td><p class="mb-0 mt-2 text-danger">Name : <%= data[i].UserId %> Status :<% if (data[i].Value === "true") { %> <%= vv %> <% } %><span class="text-black ml-1"></span></p></td>
+                    <td><p class="mb-0 mt-2 <%= bb(data[i].Value) %>">Name : <%= data[i].UserId %> Status : <%= bbb(data[i].Value) %> <span class="text-black ml-1"></span></p></td>
                   </tr>
                  <% } %>
 
@@ -296,9 +308,30 @@
                   <p class="card-title text-md-center text-xl-left">Divose list</p>
                   <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
                   </div>
+                  <% function aa(data){
+                    var ok = "Active"
+                    var no = "inactive"
+                    if (data === "true"){
+                      return ok
+                    }else{
+                      return no
+                    }
+                  }
+                  %>
+                  <% function bb(data){
+                    var ook = "text-success"
+                    var nno = "text-danger"
+                    if (data === "true"){
+                      return ook
+                    }else{
+                      return nno
+                    }
+                  }
+                  %>
+
                     <% for(var i=0; i < data2.length; i++) { %>
                       <tr>
-                        <td><p class="mb-0 mt-2 text-danger">Name : <%= data2[i].name %> Status :<% if (data2[i].active === "true") { %> <%= v %> <% } %><span class="text-black ml-1"></span></p></td>
+                        <td><p class="mb-0 mt-2 <%= bb(data2[i].active) %>">Name : <%= data2[i].name %> Status : <%= aa(data2[i].active) %> <span class="text-black ml-1"></span></p></td>
                       </tr>
                      <% } %>
 
@@ -349,6 +382,13 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+  <script>
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+    myModal.addEventListener('shown.bs.modal', function () {
+     myInput.focus()
+})
+  </script>
 
   <!-- plugins:js -->
   <script src="vendors/base/vendor.bundle.base.js"></script>

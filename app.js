@@ -30,6 +30,7 @@ var con = mysql.createConnection({
   database: "Barfas"
 })
 
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 /**
  * urlencodedParser <- with this we can find req parameter from clint(with clint ?! I mean all users like customers and end-users)
@@ -236,18 +237,21 @@ app.get('/dashboard', urlencodedParser,function (req, res) {
 
   var data1 = logins.logins
   var data2 = dlists.dlists
+  
+  
+  
   var as = JSON.parse(data1);
   var as1 = JSON.parse(data2);
 
-  res.render('index',{data:as,data2:as1,v:"Active",vv:"Login"})
+  res.render('index',{data:as,data2:as1})
 
 })
 app.post('/dashboard2', urlencodedParser,function (req, res) {
   var F1 = req.body.name
   var F2 = req.body.F2
   var F3 = req.body.F3
-  var Read_Profile =dbm.ReadProfile(F1,F2,F3)
-  if(!dbm.showlistf() && !Read_Profile){
+  dbm.showlistf() 
+  dbm.ReadProfile(F1,F2,F3)
     var data = dbm.showlist
     var data2 = JSON.stringify(data)
     var data3 = JSON.parse(data2)
@@ -256,14 +260,24 @@ app.post('/dashboard2', urlencodedParser,function (req, res) {
 
     
     res.render('in',{data:data3,v:"Active",data2:it})
-  }
+  
 
 
   
 
 })
 ////// updata for app show
-app.post('/test', urlencodedParser,function (req, res) {
+
+app.get('/test', urlencodedParser, function (req, res ,) {
+    dbm.show()
+    setTimeout(function(){
+      res.send(dbm.result)
+       }, 30)
+
+    
+    
+  
+
 
 })
 app.listen(port, () => {
