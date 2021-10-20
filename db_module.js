@@ -13,7 +13,7 @@ var con = mysql.createConnection({
 
     /**
    * 
-   * thats for check  items
+   * thats for check  items in the database 
    * @param {String} F1 is data base name
    * @param {String} F2 is cul name
    * @param {id} F3  is id name
@@ -64,7 +64,6 @@ var con = mysql.createConnection({
      ///  if (err) throw err
         var pr =  result
         exports.pr=pr
-
       });
     });
     
