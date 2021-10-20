@@ -120,7 +120,7 @@ function Delete(tablename,id){
     con.query(sql, function (err, result) {
       if (err) throw err;
       var deletean = result
-      exports.deletean= result
+      exports.deletean= deletean
     });
   });
 
