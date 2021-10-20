@@ -53,6 +53,9 @@ var con = mysql.createConnection({
     });
     
   }
+    /**
+ * with this you can see evrything about all calections
+ */
 
   function ReadProfilefull() {
     con.connect(function(err) {
@@ -69,6 +72,8 @@ var con = mysql.createConnection({
 
   /**
  * Add devois 
+ * @param a1 devois name
+ * @param a2 devois Serial number
  */
 
   function Adddevicec(a1,a2) {
