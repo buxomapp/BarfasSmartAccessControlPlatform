@@ -67,6 +67,10 @@ var con = mysql.createConnection({
     
   }
 
+  /**
+ * Add devois 
+ */
+
   function Adddevicec(a1,a2) {
     con.connect(function(err) {
      /// if (err) throw err;
@@ -83,6 +87,9 @@ var con = mysql.createConnection({
     });
   }
 
+/**
+ * show devois list 
+ */
   function showlistf() {
     con.connect(function(err) {
       ////if (err) throw err;
