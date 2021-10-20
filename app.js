@@ -257,8 +257,6 @@ app.post('/dashboard2', urlencodedParser,function (req, res) {
     var data3 = JSON.parse(data2)
     var items =JSON.stringify(dbm.items)
     var it = JSON.parse(items)
-
-    
     res.render('in',{data:data3,v:"Active",data2:it})
   
 
@@ -273,13 +271,9 @@ app.get('/test', urlencodedParser, function (req, res ,) {
     setTimeout(function(){
       res.send(dbm.result)
        }, 30)
-
-    
-    
-  
-
-
 })
+
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })

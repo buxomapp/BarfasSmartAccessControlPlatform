@@ -101,24 +101,58 @@ var con = mysql.createConnection({
     con.connect(function(err) {
       ////if (err) throw err;
       //Select all customers and return the result object:
-      con.query("SELECT * FROM devicelist ", function (err, result, fields) {
+      con.query("SELECT * FROM door1logins,Users ", function (err, result, fields) {
         if (err) throw err;
         exports.result=result
-
-        
-
-        
       });
     });
     
   }
-  
+/**
+ * Delete function
+ * @param tablename
+ * @param id
+ */
+function Delete(tablename,id){
+  con.connect(function(err) {
+    if (err) throw err;
+    var sql = "DELETE FROM "+tablename+" WHERE id = '"+id+"'";
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      var deletean = result
+      exports.deletean= result
+    });
+  });
+
+}
+/**
+ * Update function
+ * @param tablename is table name 
+ * @param set  is col name
+ * @param newval is new valeue
+ * @param id is id of rows
+ */
+ function Update(tablename,set,newval,id){
+  con.connect(function(err) {
+    if (err) throw err;
+    var sql = "UPDATE "+tablename+" SET "+set+" = '"+newval+"' WHERE id = '"+id+"'";
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      var updataan = result
+      exports.updataan =updataan
+    });
+  });
+
+}
+
   exports.db_chack=db_chack
   exports.ReadProfile=ReadProfile
   exports.Adddevicec=Adddevicec
   exports.showlistf=showlistf
   exports.show=show
   exports.ReadProfilefull= ReadProfilefull
+  exports.Delete=Delete
+  exports.Update=Update
  
   
  
