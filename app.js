@@ -181,9 +181,7 @@ app.post('/Adddevicecolumn', urlencodedParser,function (req, res) {
       con.query(sql2, function (err, result) {
       //  if (err) throw err;
        /// res.send(mes.AddRecords("Praprty"));
-        
       });
-
     });
   }
   Adddevicec();
@@ -258,10 +256,6 @@ app.post('/dashboard2', urlencodedParser,function (req, res) {
     var items =JSON.stringify(dbm.items)
     var it = JSON.parse(items)
     res.render('in',{data:data3,v:"Active",data2:it})
-  
-
-
-  
 
 })
 ////// updata for app show
